@@ -9,6 +9,7 @@ const Register = () => {
     const [values, setValues] = useState({
         name: '',
         email: '',
+        phone_no:'',
         password: '',
         error: false,
         loading: false,
@@ -16,7 +17,9 @@ const Register = () => {
         success: false
     });
 
-    const { name, email, password, success, error, loading, disabled } = values;
+
+
+    const { name, email, phone_no , password, success, error, loading, disabled } = values;
 
     const handleChange = e => {
         setValues({
@@ -26,15 +29,19 @@ const Register = () => {
         })
     }
 
+
+
     const handleSubmit = e => {
         e.preventDefault();
+    
         setValues({ ...values, error: false, loading: true, disabled: true });
 
-        register({ name, email, password })
+        register({ name, email, phone_no, password })
             .then(response => {
                 setValues({
                     name: '',
                     email: '',
+                    phone_no:'',
                     password: '',
                     success: true,
                     disabled: false,
@@ -64,6 +71,12 @@ const Register = () => {
                 <input type="email" name="email" className="form-control"
                     value={email} required onChange={handleChange} />
             </div>
+
+            <div className="form-group">
+                <label className="text-muted">Phone:</label>
+                <input type="phone_no" name="phone_no" className="form-control"
+                    value={phone_no} required onChange={handleChange} />
+            </div>
             <div className="form-group">
                 <label className="text-muted">Password:</label>
                 <input type="password" name="password" className="form-control"
@@ -80,6 +93,7 @@ const Register = () => {
             </div>
         )
     }
+
 
     return (
         <Layout title="Register" className="container col-md-8 offset-md-2">

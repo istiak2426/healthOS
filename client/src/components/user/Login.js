@@ -7,7 +7,8 @@ import { authenticate, isAuthenticated, userInfo } from '../../utils/auth';
 
 const Login = () => {
     const [values, setValues] = useState({
-        email: '',
+     
+        phone_no:'',
         password: '',
         error: false,
         loading: false,
@@ -15,7 +16,7 @@ const Login = () => {
         redirect: false
     });
 
-    const { email, password, loading, error, redirect, disabled } = values;
+    const {  phone_no, password, loading, error, redirect, disabled } = values;
 
 
     const handleChange = e => {
@@ -26,15 +27,20 @@ const Login = () => {
         })
     }
 
+
+
+
+
     const handleSubmit = e => {
         e.preventDefault();
         setValues({ ...values, error: false, loading: true, disabled: true });
 
-        login({ email, password })
+        login({ phone_no, password })
             .then(response => {
                 authenticate(response.data.token, () => {
                     setValues({
                         email: '',
+                        phone_no:'',
                         password: '',
                         success: true,
                         disabled: false,
@@ -54,13 +60,13 @@ const Login = () => {
             })
     }
 
-
     const signInForm = () => (
         <form onSubmit={handleSubmit}>
+  
             <div className="form-group">
-                <label className="text-muted">Email:</label>
-                <input name='email' type="email" className="form-control"
-                    value={email} required onChange={handleChange} />
+                <label className="text-muted">Phone:</label>
+                <input name='phone_no' type="phone_no" className="form-control"
+                    value={phone_no} required onChange={handleChange} />
             </div>
             <div className="form-group">
                 <label className="text-muted">Password:</label>

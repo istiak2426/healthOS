@@ -27,6 +27,7 @@
     "mongoose": "^6.2.5",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.15",
+    "regex": "^0.1.1",
     "ssl-commerz-node": "^1.0.4"
   }
 }
